@@ -137,6 +137,7 @@ class PaymentController extends Controller
                         'bill_id' => $bill->id,
                         'amount' => $bill->amount,
                         'payment_status' => $bill->payment_status,
+                        'payment_time' => $bill->payment_time,
                         'final_payment_date' => $bill->final_payment_date,
                         'payment_transaction' => $bill->payment_transaction,
                     ];
