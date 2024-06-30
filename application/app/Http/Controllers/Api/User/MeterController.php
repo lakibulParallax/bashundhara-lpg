@@ -81,10 +81,10 @@ class MeterController extends Controller
             return $this->notFoundApiResponse($data);
         }
 
-        $exist_user_meter = UserMeter::where('meter_id', $exist_meter->id)->first();
+        $exist_user_meter = UserMeter::where('meter_id', $exist_meter->id)->where('user_id', Auth::id())->first();
         if($exist_user_meter)
         {
-            $data['message'] = 'Meter is already added';
+            $data['message'] = 'Meter is already added to this user';
             return $this->successApiResponse($data);
         }
 
@@ -93,7 +93,7 @@ class MeterController extends Controller
         $user_meter->meter_id = $exist_meter->id;
         $user_meter->save();
 
-        $data['message'] = 'Meter is added successfully';
+        $data['message'] = 'Meter is added to user profile';
         return $this->successApiResponse($data);
     }
 
