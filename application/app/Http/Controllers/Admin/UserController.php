@@ -22,10 +22,8 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        // Initialize the query for users
         $userQuery = User::latest()->with('media');
 
-        // Check if the 'is_staff' query parameter is present and apply the filter if needed
         if ($request->has('is_staff')) {
             $isStaff = $request->query('is_staff');
 
@@ -34,33 +32,26 @@ class UserController extends Controller
             }
         }
 
-        // Fetch the users based on the query
         $users = $userQuery->get();
 
-        // Initialize the query for admins
-        $adminQuery = Admin::latest(); // Assuming Admin model has similar relationships
+        $adminQuery = Admin::latest();
 
-        // Apply the same 'is_staff' filter to the admin query if the parameter is present
         if ($request->has('is_staff')) {
             if ($isStaff === "0" || $isStaff === "1") {
                 $adminQuery->where('is_staff', $isStaff);
             }
         }
 
-        // Fetch the admins based on the query
         $admins = $adminQuery->get();
 
-        // Merge the users and admins collections
         $mergedResults = $users->merge($admins);
 
-        // Paginate the merged results
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $perPage = 10;
         $currentResults = $mergedResults->slice(($currentPage - 1) * $perPage, $perPage)->all();
         $paginatedResults = new LengthAwarePaginator($currentResults, $mergedResults->count(), $perPage);
         $paginatedResults->setPath($request->url());
 
-        // Pass the paginated results to the view
         $data['users'] = $paginatedResults;
 
         return view('admin.user.list', $data);

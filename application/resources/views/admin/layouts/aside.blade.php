@@ -104,7 +104,7 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{Request::is(['admin/bill-settings/list'])?'here show':''}}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{Request::is(['admin/bill-settings/list', 'admin/role/list'])?'here show':''}}">
                     <!--begin:Menu link-->
                     <span class="menu-link">
                     <span class="menu-icon">
@@ -119,7 +119,7 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link" href="{{route('admin.role.list')}}" title="Block List" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                            <a class="menu-link {{Request::is('admin/role/list')?'active':''}}" href="{{route('admin.role.list')}}" title="Roles" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>

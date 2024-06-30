@@ -50,6 +50,11 @@ class Meter extends Model
         return (string)$totalDue;
     }
 
+    public function pendingBillsCount()
+    {
+        return $this->bills->where('payment_status', 0)->count();
+    }
+
     public function users(): HasMany
     {
         return $this->hasMany(UserMeter::class, 'meter_id', 'id');

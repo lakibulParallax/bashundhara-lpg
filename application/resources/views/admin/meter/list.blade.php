@@ -151,10 +151,11 @@
                         <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                             <th class="min-w-50px">SL</th>
                             <th class="min-w-125px">Number</th>
+                            <th class="min-w-125px">Meter Type</th>
                             <th class="min-w-125px">Customer Name</th>
                             <th class="min-w-125px">SND</th>
+                            <th class="min-w-125px">Last Reading Date</th>
                             <th class="min-w-125px">Status</th>
-                            <th class="min-w-125px">Meter Type</th>
                             <th class="text-end min-w-125px">Actions</th>
                         </tr>
                         </thead>
@@ -164,13 +165,6 @@
                                 <tr>
                                     <td>{{$key+=1}}</td>
                                     <td>{{$meter->number}}</td>
-                                    <td>{{$meter->customer_name}}</td>
-                                    <td>{{$meter->snd}}</td>
-                                    <td>
-                                        <div class="form-check form-switch form-check-custom form-check-solid me-10">
-                                            <input class="form-check-input h-20px w-30px" type="checkbox" value="" id="flexSwitch20x30 welcome_status_{{$meter->id}}" {{$meter ? ($meter->status == 1 ? 'checked':''):''}} onclick="location.href='{{route('admin.meter.status',$meter->id)}}'">
-                                        </div>
-                                    </td>
                                     <td>
                                         @if($meter->meter_type == '1')
                                             <span class="badge badge-light-primary">Pre Paid</span>
@@ -178,10 +172,18 @@
                                             <span class="badge badge-secondary">Post Paid</span>
                                         @endif
                                     </td>
+                                    <td>{{$meter->customer_name}}</td>
+                                    <td>{{$meter->snd}}</td>
+                                    <td>{{$meter->last_reading_date}}</td>
+                                    <td>
+                                        <div class="form-check form-switch form-check-custom form-check-solid me-10">
+                                            <input class="form-check-input h-20px w-30px" type="checkbox" value="" id="flexSwitch20x30 welcome_status_{{$meter->id}}" {{$meter ? ($meter->status == 1 ? 'checked':''):''}} onclick="location.href='{{route('admin.meter.status',$meter->id)}}'">
+                                        </div>
+                                    </td>
                                     <td class="text-end">
-                                        <a href="{{ route('admin.meter.details', $meter->id) }}" class="menu-link" title="View">
+                                        <a href="{{ route('admin.bill.list', ['meter_id' => $meter->id]) }}" class="menu-link" title="Bills">
                                             <button class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_permission">
-                                                <i class="ki-outline ki-eye fs-3"></i>
+                                                <i class="ki-outline ki-document fs-3"><sup><span class="badge badge-warning rounded">{{$meter->pendingBillsCount() != 0 ? $meter->pendingBillsCount() : '' }}</span></sup></i>
                                             </button>
                                         </a>
                                         <a href="{{ route('admin.meter.edit', $meter->id) }}" class="menu-link" title="Edit">

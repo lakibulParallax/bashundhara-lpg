@@ -101,18 +101,17 @@
                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
                     <thead>
                     <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
-                        <th class="text-center">SL.</th>
-                        <th class="text-center">Name</th>
-                        <th class="text-center">Role Type</th>
-                        <th class="text-center">Status</th>
-                        @can('update role management', Auth::user())
-                            <th class="text-center">Actions</th>
-                        @endcan
+                        <th class="min-w-50px">SL</th>
+                        <th class="min-w-50px">Name</th>
+                        <th class="min-w-50px">Role Type</th>
+                        <th class="min-w-50px">Status</th>
+                        <th class="min-w-50px">Created By</th>
+                        <th class="text-end">Actions</th>
                     </tr>
                     </thead>
                     @if(!empty($roles))
                         @foreach($roles as $key=>$role)
-                            <tbody class="text-gray fw-semibold">
+                            <tbody class="text-gray-600 fw-semibold">
                             <tr>
                                 <td>{{$key+=1}}</td>
                                 <td>{{$role->name}}</td>
@@ -128,20 +127,19 @@
                                         <span class="badge badge-light-danger">In Active</span>
                                     @endif
                                 </td>
-                                @can('update role management', Auth::user())
-                                    <td class="text-end">
-                                        <a href="{{ route('admin.bill.edit', $role->id) }}" class="menu-link" title="Edit">
-                                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_permission">
-                                                <i class="ki-outline ki-user-edit fs-3"></i>
-                                            </button>
-                                        </a>
-                                        <a href="#" data-i="{{ $role->id }}" class="menu-link delete"  title="Delete">
-                                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-permissions-table-filter="delete_row">
-                                                <i class="ki-outline ki-trash fs-3"></i>
-                                            </button>
-                                        </a>
-                                    </td>
-                                @endcan
+                                <td>Super Admin</td>
+                                <td class="text-end">
+                                    <a href="#" class="menu-link" title="Edit">
+                                        <button class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_permission">
+                                            <i class="ki-outline ki-user-edit fs-3"></i>
+                                        </button>
+                                    </a>
+                                    <a href="#" data-i="{{ $role->id }}" class="menu-link delete"  title="Delete">
+                                        <button class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-permissions-table-filter="delete_row">
+                                            <i class="ki-outline ki-trash fs-3"></i>
+                                        </button>
+                                    </a>
+                                </td>
                             </tr>
                             </tbody>
                         @endforeach

@@ -14,9 +14,13 @@ use Exception;
 
 class BillController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data['bills'] = Bill::latest()->paginate(10);
+        $data['bills'] = Bill::with('meter')
+            ->when(isset($request->meter_id), function ($query) use ($request) {
+                return $query->where('meter_id', $request->meter_id);
+            })
+            ->latest()->paginate(10);
         return view('admin.bill.list', $data);
     }
 

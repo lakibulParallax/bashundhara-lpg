@@ -88,6 +88,11 @@ class User extends Authenticatable implements HasMedia
         return asset('application/public/storage/no_image.jpg');
     }
 
+    public function addedMetersCount()
+    {
+        return $this->user_meters->count();
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('avatar')->singleFile();

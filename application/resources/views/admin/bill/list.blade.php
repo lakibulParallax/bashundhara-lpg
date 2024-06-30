@@ -151,9 +151,10 @@
                         <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                             <th class="min-w-50px">SL</th>
                             <th class="min-w-125px">Invoice ID</th>
+                            <th class="min-w-125px">Meter</th>
                             <th class="min-w-125px">Consumption</th>
-                            <th class="min-w-125px">Bill Month</th>
                             <th class="min-w-125px">Amount</th>
+                            <th class="min-w-125px">Bill Month</th>
                             <th class="min-w-125px">Payment Status</th>
                             <th class="text-end min-w-125px">Actions</th>
                         </tr>
@@ -164,9 +165,10 @@
                                 <tr>
                                     <td>{{$key+=1}}</td>
                                     <td>{{ str_pad($bill->id, 5, '0', STR_PAD_LEFT) }}</td>
+                                    <td>{{$bill->meter->number}}</td>
                                     <td>{{$bill->consumption}}</td>
-                                    <td>{{$bill->bill_month}}</td>
                                     <td>{{$bill->amount}}</td>
+                                    <td>{{$bill->bill_month}}</td>
                                     <td>
                                         @if($bill->payment_status == '1')
                                             <span class="badge badge-light-success">Paid</span>

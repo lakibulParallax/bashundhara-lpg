@@ -104,6 +104,15 @@ class Helpers
         return $user;
     }
 
+    public static function currency()
+    {
+        echo '৳';
+    }
+    public static function unit()
+    {
+        echo 'L';
+    }
+
     public static function generateUniqueInvoiceNumber() {
         $maxAttempts = 10;
         $attempts = 0;

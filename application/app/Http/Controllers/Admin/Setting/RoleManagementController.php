@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Setting;
 
 use App\Http\Controllers\Controller;
+use App\Models\Meter;
 use App\Models\System\Permission as ModelPermission;
 use App\Models\System\Role as ModelRole;
 

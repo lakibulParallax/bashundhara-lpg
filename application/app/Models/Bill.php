@@ -22,4 +22,9 @@ class Bill extends Model
     {
         return $this->hasOne(PaymentTransaction::class, 'id', 'payment_transaction_id');
     }
+
+    public function meter(): HasOne
+    {
+        return $this->hasOne(Meter::class, 'id', 'meter_id');
+    }
 }
