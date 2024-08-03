@@ -2,9 +2,9 @@
 
 @section('content')
 <!--begin::Post-->
-<div class="post d-flex flex-column-fluid" id="kt_post">
+<div class="app-toolbar pt-6 pb-2" id="kt_post">
     <!--begin::Container-->
-    <div id="kt_content_container" class="container-xxl">
+    <div id="kt_content_container" class="app-container container-fluid d-flex align-items-stretch">
         <!--begin::Contact-->
         <div class="card">
             <!--begin::Body-->
@@ -14,9 +14,8 @@
                     <!--begin::Col-->
                     <div class="col-md-12 pe-lg-10">
                         <!--begin::Form-->
-                        <form action="{{route('role-management.update', $role->id)}}" class="form mb-15" name="role-management-form" method="POST" id="kt_contact_form">
+                        <form action="{{route('admin.role.update', $role->id)}}" class="form mb-15" name="role-management-form" method="POST" id="kt_contact_form">
                             {{csrf_field()}}
-                            {{method_field('PUT')}}
                             <h1 class="fw-bolder text-dark mb-9">Update Role</h1>
                             <!--begin::Input group-->
                             <input type="hidden" name="id" value="{{$role->id}}">
@@ -105,7 +104,7 @@
                                 <!--end::Switch-->
                             </div>
                             <div class="d-flex">
-                                <a style="margin-right:5px;" href="{{route('role-management.index')}}" class="btn btn-secondary">Back</a>
+                                <a style="margin-right:5px;" href="{{route('admin.role.list')}}" class="btn btn-secondary">Back</a>
                                 <button type="submit" class="btn btn-primary" id="kt_contact_submit_button">
                                     <!--begin::Indicator-->
                                     <span class="indicator-label">Update</span>
@@ -124,4 +123,35 @@
     <!--end::Container-->
 </div>
 <!--end::Post-->
+    <script>
+        $(document).ready(function(){
+
+            var all_permission             = {{Js::from($permissions)}};
+            var assigned_permission        = {{Js::from($role->permissions)}};
+            var assigned_permission_length = assigned_permission.length;
+            var all_permission_length      = 0;
+            $.each( all_permission, function( key, value ) {
+                if(value.permissions)
+                {
+                    all_permission_length = all_permission_length + value.permissions.length;
+                }
+            });
+            if(assigned_permission_length == all_permission_length)
+            {
+                $('#selectAll').prop('checked', true);
+            }
+            else{
+                $('#selectAll').prop('checked', false);
+            }
+            $(function() {
+                $('#selectAll').click(function() {
+                    if ($(this).prop('checked')) {
+                        $('.permission').prop('checked', true);
+                    } else {
+                        $('.permission').prop('checked', false);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

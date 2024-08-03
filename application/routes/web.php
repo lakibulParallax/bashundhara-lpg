@@ -73,9 +73,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         });
         Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
             Route::get('list', [RoleManagementController::class, 'index'])->name('list');
-            Route::post('add', [RoleManagementController::class, 'add'])->name('add');
+            Route::get('add', [RoleManagementController::class, 'add'])->name('add');
             Route::post('store', [RoleManagementController::class, 'store'])->name('store');
-            Route::post('update', [RoleManagementController::class, 'update'])->name('update');
+            Route::get('edit/{id}', [RoleManagementController::class, 'edit'])->name('edit');
+            Route::post('update/{id}', [RoleManagementController::class, 'update'])->name('update');
+            Route::get('delete', [RoleManagementController::class, 'destroy'])->name('delete');
         });
     });
 });

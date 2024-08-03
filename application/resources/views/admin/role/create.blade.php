@@ -2,9 +2,9 @@
 
 @section('content')
 <!--begin::Post-->
-<div class="post d-flex flex-column-fluid" id="kt_post">
+<div class="app-toolbar pt-6 pb-2" id="kt_post">
     <!--begin::Container-->
-    <div id="kt_content_container" class="container-xxl">
+    <div id="kt_content_container" class="app-container container-fluid d-flex align-items-stretch">
         <!--begin::Contact-->
         <div class="card">
             <!--begin::Body-->
@@ -14,7 +14,7 @@
                     <!--begin::Col-->
                     <div class="col-md-12 pe-lg-10">
                         <!--begin::Form-->
-                        <form action="{{route('role-management.store')}}" name="role-management-form" class="form mb-15" method="POST" id="kt_contact_form">
+                        <form action="{{route('admin.role.store')}}" name="role-management-form" class="form mb-15" method="POST" id="kt_contact_form">
                             @csrf
                             <h1 class="fw-bolder text-dark mb-9">Create Role</h1>
                             <!--begin::Input group-->
@@ -100,7 +100,7 @@
                                 <!--end::Switch-->
                             </div>
                             <div class="d-flex">
-                                <a style="margin-right:5px;" href="{{route('role-management.index')}}" class="btn btn-secondary">Back</a>
+                                <a style="margin-right:5px;" href="{{route('admin.role.store')}}" class="btn btn-secondary">Back</a>
                                 <button type="submit" class="btn btn-primary" id="kt_contact_submit_button">
                                     <!--begin::Indicator-->
                                     <span class="indicator-label">Create</span>
@@ -119,4 +119,17 @@
     <!--end::Container-->
 </div>
 <!--end::Post-->
+<script>
+    $(document).ready(function(){
+        $(function() {
+            $('#selectAll').click(function() {
+                if ($(this).prop('checked')) {
+                    $('.permission').prop('checked', true);
+                } else {
+                    $('.permission').prop('checked', false);
+                }
+            });
+        });
+    });
+</script>
 @endsection

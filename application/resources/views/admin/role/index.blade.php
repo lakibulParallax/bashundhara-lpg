@@ -129,16 +129,16 @@
                                 </td>
                                 <td>Super Admin</td>
                                 <td class="text-end">
-                                    <a href="#" class="menu-link" title="Edit">
+                                    <a href="{{route('admin.role.edit', $role->id)}}" class="menu-link" title="Edit">
                                         <button class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_permission">
                                             <i class="ki-outline ki-user-edit fs-3"></i>
                                         </button>
                                     </a>
-                                    <a href="#" data-i="{{ $role->id }}" class="menu-link delete"  title="Delete">
-                                        <button class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-permissions-table-filter="delete_row">
-                                            <i class="ki-outline ki-trash fs-3"></i>
-                                        </button>
-                                    </a>
+{{--                                    <a href="#" data-i="{{ $role->id }}" class="menu-link delete"  title="Delete">--}}
+{{--                                        <button class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-permissions-table-filter="delete_row">--}}
+{{--                                            <i class="ki-outline ki-trash fs-3"></i>--}}
+{{--                                        </button>--}}
+{{--                                    </a>--}}
                                 </td>
                             </tr>
                             </tbody>
@@ -159,9 +159,9 @@
                             <i class="ki-outline ki-cross fs-1"></i>
                         </div>
                     </div>
-                    <form method="GET" action="{{ route('admin.bill.delete') }}" id="frmDel">
+                    <form method="GET" action="{{ route('admin.role.delete') }}" id="frmDel">
                         <div class="modal-body">
-                            <p>Are you sure you want to delete this Bill?</p>
+                            <p>Are you sure you want to delete this Role?</p>
                         </div>
                         <div class="modal-footer bt-0">
                             <input type="hidden" name="id" value="">
