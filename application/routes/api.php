@@ -42,6 +42,12 @@ Route::prefix('user')->group(function () {
         Route::get('/meter/{id}', [MeterController::class, 'get']);
         Route::get('/meter-preview', [MeterController::class, 'getPreview']);
 
+        /* Tanker */
+        Route::post('/add-meter', [MeterController::class, 'addMeter']);
+        Route::post('/remove-meter', [MeterController::class, 'removeMeter']);
+        Route::get('/meter/{id}', [MeterController::class, 'get']);
+        Route::get('/meter-preview', [MeterController::class, 'getPreview']);
+
         /* payment */
         Route::group(['prefix' => 'payment'], function () {
             Route::post('/pay', [PaymentController::class, 'pay']);

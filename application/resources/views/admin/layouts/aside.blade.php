@@ -54,7 +54,7 @@
                     <span class="menu-icon">
 												<i class="ki-outline ki-devices fs-2"></i>
 											</span>
-                    <span class="menu-title">Meter</span>
+                    <span class="menu-title">Meters</span>
                     <span class="menu-arrow"></span>
                     </span>
                     <!--end:Menu link-->
@@ -92,6 +92,34 @@
                         <div class="menu-item">
                             <!--begin:Menu link-->
                             <a class="menu-link {{Request::is('admin/bill/list')?'active':''}}" href="{{route('admin.bill.list')}}" title="Bill List" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+                                <span class="menu-title">List</span>
+                            </a>
+                            <!--end:Menu link-->
+                        </div>
+                    </div>
+                    <!--end:Menu sub-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{Request::is(['admin/bill/list', 'admin/bill/add', 'admin/bill/edit/*', 'admin/bill/details/*'])?'here show':''}}">
+                    <!--begin:Menu link-->
+                    <span class="menu-link">
+                    <span class="menu-icon">
+												<i class="ki-outline ki-truck fs-2"></i>
+											</span>
+                    <span class="menu-title">Tankers</span>
+                    <span class="menu-arrow"></span>
+                    </span>
+                    <!--end:Menu link-->
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion">
+                        <!--begin:Menu item-->
+                        <div class="menu-item">
+                            <!--begin:Menu link-->
+                            <a class="menu-link {{Request::is('admin/bill/list')?'active':''}}" href="#" title="Bill List" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
